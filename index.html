@@ -56,9 +56,9 @@
 
       fetch("https://script.google.com/macros/s/AKfycbyfR7zfYSAzkcN24ukiDELcdgFcE8-161939rXo5fvm1XsALbterqxzqaGgk8G33X9x/exec", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       })
+
       .then(res => res.json())
       .then(response => {
         alert("✅ Data sparades i Google Sheets!");
@@ -68,4 +68,65 @@
     });
   </script>
 </body>
-</html>
+<!-- </html>
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kundregistrering</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f4f4f9; }
+    h2 { text-align: center; color: #333; }
+    form { max-width: 480px; margin: auto; background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    input, select, textarea, button {
+      width: 100%; padding: 10px; margin: 8px 0; border-radius: 8px; border: 1px solid #ccc; font-size: 14px;
+    }
+    button { background: #4CAF50; color: white; border: none; cursor: pointer; font-size: 16px; }
+    button:hover { background: #45a049; }
+  </style>
+</head>
+<body>
+  <h2>📋 Registrera kunddata</h2>
+  <form id="customerForm">
+    <input type="text" name="kundsnamn" placeholder="Kundsnamn *" required>
+    <input type="tel" name="telefonnummer" placeholder="Telefonnummer *" required>
+    <input type="text" name="produkt" placeholder="Tillverkare / Modell / Produkt / Färg *" required>
+
+    <select name="status" required>
+      <option value="">Välj status</option>
+      <option value="Pågående">Pågående</option>
+      <option value="Färdig">Färdig</option>
+      <option value="Avvaktar">Avvaktar</option>
+    </select>
+
+    <input type="text" name="leverantor" placeholder="Leverantör *" required>
+    <input type="date" name="datum" required value="2025-09-05">
+    <input type="text" name="tekniker" placeholder="Tekniker *" required>
+    <textarea name="kommentar" placeholder="Övrigt / Kommentar..."></textarea>
+
+    <button type="submit">Skicka till Google Sheets</button>
+  </form>
+
+  <script>
+    const form = document.getElementById("customerForm");
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+
+      fetch("https://script.google.com/macros/s/AKfycbyfR7zfYSAzkcN24ukiDELcdgFcE8-161939rXo5fvm1XsALbterqxzqaGgk8G33X9x/exec", {
+        method: "POST",
+        body: JSON.stringify(data),
+      })
+
+      .then(res => res.json())
+      .then(response => {
+        alert("✅ Data sparades i Google Sheets!");
+        form.reset();
+      })
+      .catch(err => alert("❌ Fel: " + err));
+    });
+  </script>
+</body>
+</html> -->
