@@ -1,74 +1,119 @@
 <!DOCTYPE html>
 <html lang="sv">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kundregistrering</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100 min-h-screen flex items-center justify-center">
-  <div class="w-full max-w-lg bg-white rounded-2xl shadow-lg p-8">
-    <h2 class="text-2xl font-bold text-center text-gray-700 mb-6">📋 Registrera kunddata</h2>
-    
-    <form id="customerForm" class="space-y-4">
-      <input type="text" name="kundsnamn" placeholder="Kundsnamn *" required 
-             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none">
-      
-      <input type="tel" name="telefonnummer" placeholder="Telefonnummer *" required 
-             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none">
-      
-      <input type="text" name="produkt" placeholder="Tillverkare / Modell / Produkt / Färg *" required 
-             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none">
-      
-      <select name="status" required 
-              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none">
-        <option value="">Välj status</option>
-        <option value="Pågående">Pågående</option>
-        <option value="Färdig">Färdig</option>
-        <option value="Avvaktar">Avvaktar</option>
-      </select>
-      
-      <input type="text" name="leverantor" placeholder="Leverantör *" required 
-             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none">
-      
-      <input type="date" name="datum" required value="2025-09-05" 
-             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none">
-      
-      <input type="text" name="tekniker" placeholder="Tekniker *" required 
-             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none">
-      
-      <textarea name="kommentar" placeholder="Övrigt / Kommentar..." 
-                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"></textarea>
-      
-      <button type="submit" 
-              class="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-200">
-        Skicka till Google Sheets
-      </button>
-    </form>
-  </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kundregistrering</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-lg bg-white rounded-2xl shadow-lg p-8">
+      <h2 class="text-2xl font-bold text-center text-gray-700 mb-6">
+        📋 Registrera kunddata
+      </h2>
 
-  <script>
-    const form = document.getElementById("customerForm");
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData);
+      <form id="customerForm" class="space-y-4">
+        <input
+          type="text"
+          name="kundsnamn"
+          placeholder="Kundsnamn *"
+          required
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+        />
 
-      fetch("https://script.google.com/macros/s/AKfycbyfR7zfYSAzkcN24ukiDELcdgFcE8-161939rXo5fvm1XsALbterqxzqaGgk8G33X9x/exec", {
-        method: "POST",
-        body: JSON.stringify(data),
-      })
+        <input
+          type="tel"
+          name="telefonnummer"
+          placeholder="Telefonnummer *"
+          required
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+        />
 
-      .then(res => res.json())
-      .then(response => {
-        alert("✅ Data sparades i Google Sheets!");
-        form.reset();
-      })
-      .catch(err => alert("❌ Fel: " + err));
-    });
-  </script>
-</body>
-<!-- </html>
+        <input
+          type="text"
+          name="produkt"
+          placeholder="Tillverkare / Modell / Produkt / Färg *"
+          required
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+        />
+
+        <select
+          name="status"
+          required
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+        >
+          <option value="">Välj status</option>
+          <option value="Pågående">Pågående</option>
+          <option value="Färdig">Färdig</option>
+          <option value="Avvaktar">Avvaktar</option>
+        </select>
+
+        <input
+          type="text"
+          name="leverantor"
+          placeholder="Leverantör *"
+          required
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+        />
+
+        <input
+          type="date"
+          name="datum"
+          required
+          value="2025-09-05"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+        />
+
+        <input
+          type="text"
+          name="tekniker"
+          placeholder="Tekniker *"
+          required
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+        />
+
+        <textarea
+          name="kommentar"
+          placeholder="Övrigt / Kommentar..."
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:outline-none"
+        ></textarea>
+
+        <button
+          type="submit"
+          class="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-200"
+        >
+          Skicka till Google Sheets
+        </button>
+      </form>
+    </div>
+
+    <script>
+      const form = document.getElementById("customerForm");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData);
+
+        fetch(
+          "https://script.google.com/macros/s/AKfycbyfR7zfYSAzkcN24ukiDELcdgFcE8-161939rXo5fvm1XsALbterqxzqaGgk8G33X9x/exec",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }
+        )
+          .then((res) => res.json())
+          .then((response) => {
+            alert("✅ Data sparades i Google Sheets!");
+            form.reset();
+          })
+          .catch((err) => alert("❌ Fel: " + err));
+      });
+    </script>
+  </body>
+  <!-- </html>
 <!DOCTYPE html>
 <html lang="sv">
 <head>
@@ -130,3 +175,4 @@
   </script>
 </body>
 </html> -->
+</html>
